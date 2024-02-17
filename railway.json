@@ -4,7 +4,7 @@
     "builder": "NIXPACKS"
   },
   "deploy": {
-    "startCommand": "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn --log-level debug hello_world.wsgi 0.0.0.0:8000",
+    "startCommand": "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn --log-level debug hello_world.wsgi --bind 0.0.0.0:8000 --workers 4 --threads 4 --timeout 120 --worker-class gthread",
     "restartPolicyType": "ON_FAILURE",
     "restartPolicyMaxRetries": 10
   }
